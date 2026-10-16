@@ -7,6 +7,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ClimateWise AI - Plataforma de Análise Climática</title>
   <meta name="description" content="Plataforma avançada para análise e precificação de eventos climáticos" />
+  <link rel="canonical" href="https://www.climatewise.com.br/" />
+  <meta property="og:title" content="ClimateWise AI - Plataforma de Análise Climática" />
+  <meta property="og:description" content="Plataforma avançada para análise e precificação de eventos climáticos" />
+  <meta property="og:url" content="https://www.climatewise.com.br/" />
+  <meta property="og:image" content="https://www.climatewise.com.br/demo/atlas.png" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ClimateWise AI - Plataforma de Análise Climática" />
+  <meta name="twitter:description" content="Plataforma avançada para análise e precificação de eventos climáticos" />
+  <meta name="twitter:image" content="https://www.climatewise.com.br/demo/atlas.png" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -17,6 +28,7 @@
     "url": "https://www.climatewise.com.br",
     "logo": "https://www.climatewise.com.br/favicon.svg",
     "description": "ClimateTech brasileira de seguro climático paramétrico com IA. Motor atuarial FIMCE para previsão de eventos climáticos extremos e modelagem de impacto em commodities e mercados financeiros.",
+    "disambiguatingDescription": "ClimateTech brasileira de seguro climático paramétrico com IA, em www.climatewise.com.br. Não confundir com a iniciativa ClimateWise da Cambridge Institute for Sustainability Leadership (CISL, Reino Unido) nem com a empresa americana ClimateAi (climate.ai).",
     "foundingLocation": {
       "@type": "Place",
       "address": {
@@ -108,19 +120,38 @@
   <link rel="stylesheet" crossorigin href="/assets/index-DjKxj2mp.css">
   <style>
     #faq,
+    #sobre,
     .lp-faq-item {
       scroll-margin-top: 6rem;
     }
 
-    #faq {
+    #faq,
+    #sobre {
       background: var(--lp-bg-2, #0c1710);
       color: var(--lp-text, #f0fdf4);
       font-family: "Plus Jakarta Sans", Inter, sans-serif;
     }
 
-    /* Evita flash da seção FAQ abaixo do #root vazio depois que o React monta. */
-    #root:not(:empty) ~ #faq {
+    #sobre {
+      background: var(--lp-bg, #070d0a);
+    }
+
+    /* Evita flash das seções estáticas abaixo do #root vazio depois que o React monta. */
+    #root:not(:empty) ~ #faq,
+    #root:not(:empty) ~ #sobre {
       display: none;
+    }
+
+    .lp-about-copy {
+      margin: 0 auto;
+      max-width: 42rem;
+      color: rgba(240, 253, 244, 0.7);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .lp-about-copy p + p {
+      margin-top: 1rem;
     }
 
     .lp-faq-list {
@@ -181,6 +212,34 @@
 
 <body class="bg-neutral-50 antialiased">
   <div id="root"></div>
+
+  <section id="sobre" class="py-24 px-6" aria-labelledby="geo-h1">
+    <div class="container mx-auto max-w-3xl">
+      <div class="text-center mb-10">
+        <span class="text-xs font-bold tracking-[0.2em] uppercase lp-gradient-text">Sobre</span>
+        <h1 id="geo-h1" class="font-black mt-3 text-3xl md:text-4xl text-white">
+          O que é a ClimateWise
+        </h1>
+      </div>
+      <div class="lp-about-copy">
+        <p>A ClimateWise é uma climateTech brasileira de seguro climático paramétrico com IA, em
+          www.climatewise.com.br. O núcleo metodológico é o FIMCE (Framework Integrado de Modelagem
+          Climático-Econômica), motor atuarial que combina machine learning e modelos físicos para prever eventos
+          climáticos extremos e estimar impacto em commodities e mercados financeiros, com integrações NOAA, Embrapa
+          ClimAPI e OpenMeteo. A marca do produto é ClimateWise; o código público está em
+          github.com/leanderdulac/ClimateAI, sob licença MIT.</p>
+        <p>A plataforma é voltada a seguradoras e resseguradoras que estruturam produtos paramétricos ou agrícolas, a
+          atuários e áreas de risco que precisam ligar um índice climático a prêmio e payout, e a plataformas que
+          consomem catálogo e endpoints de clima e risco pela Partner API. É incubada pelo IA Instituto (Inosu Acertas
+          Instituto) e acelerada pelo NVIDIA Inception Program. Há um piloto planejado em Monte Alegre com a cooperativa
+          de crédito agrícola local.</p>
+        <p>No seguro paramétrico da ClimateWise, o pagamento dispara quando um índice ou gatilho climático é atingido —
+          não por vistoria tradicional de sinistro. Um oráculo climático multi-fonte (consenso 2 de 3) confirma o
+          evento; em seguida o pagamento é liquidado de forma automática, com apólice tokenizada em blockchain
+          (testnet).</p>
+      </div>
+    </div>
+  </section>
 
   <section id="faq" class="py-24 px-6" aria-labelledby="lp-faq-title">
     <div class="container mx-auto max-w-3xl">
@@ -269,8 +328,10 @@
   <script>
     (function () {
       var faq = document.getElementById("faq");
+      var sobre = document.getElementById("sobre");
       var mount = document.getElementById("root");
-      if (!faq || !mount) return;
+      if (!mount) return;
+      var placing = false;
 
       function ensureFooterFaqLink(footer) {
         if (footer.querySelector('a[href="#faq"]')) return;
@@ -290,22 +351,60 @@
         }
       }
 
-      function placeFaq() {
-        var root = mount.querySelector(".lp-root");
-        if (!root) return;
-        var footer = root.querySelector("footer");
-        if (!footer) return;
-        var cta = footer.previousElementSibling;
-        var target = cta && cta !== faq ? cta : footer;
-        if (faq.parentNode !== root || faq.nextElementSibling !== target) {
-          root.insertBefore(faq, target);
+      function insertBeforeTarget(el, root, target) {
+        if (!el || !root || !target || el === target) return;
+        if (el.parentNode !== root || el.nextElementSibling !== target) {
+          root.insertBefore(el, target);
         }
-        ensureFooterFaqLink(footer);
       }
 
-      var observer = new MutationObserver(placeFaq);
+      function ensureSingleH1(root) {
+        var hero = null;
+        var sections = root.querySelectorAll("section");
+        for (var s = 0; s < sections.length; s++) {
+          if (sections[s].id === "sobre" || sections[s].id === "faq") continue;
+          var found = sections[s].querySelector("h1");
+          if (found) { hero = found; break; }
+        }
+        var h1s = document.querySelectorAll("h1");
+        if (h1s.length <= 1) return;
+        var keep = hero || h1s[0];
+        for (var i = 0; i < h1s.length; i++) {
+          var el = h1s[i];
+          if (el === keep) continue;
+          var h2 = document.createElement("h2");
+          h2.className = el.className;
+          if (el.id) h2.id = el.id;
+          h2.innerHTML = el.innerHTML;
+          el.parentNode.replaceChild(h2, el);
+        }
+      }
+
+      function placeGeoSections() {
+        if (placing) return;
+        placing = true;
+        try {
+          var root = mount.querySelector(".lp-root");
+          if (!root) return;
+          var ticker = root.querySelector(".lp-ticker-wrap");
+          var sobreTarget = ticker ? ticker.nextElementSibling : null;
+          if (sobre && sobreTarget) insertBeforeTarget(sobre, root, sobreTarget);
+          var footer = root.querySelector("footer");
+          if (footer) {
+            var cta = footer.previousElementSibling;
+            var faqTarget = cta && cta !== faq ? cta : footer;
+            if (faq) insertBeforeTarget(faq, root, faqTarget);
+            ensureFooterFaqLink(footer);
+          }
+          ensureSingleH1(root);
+        } finally {
+          placing = false;
+        }
+      }
+
+      var observer = new MutationObserver(placeGeoSections);
       observer.observe(mount, { childList: true, subtree: true });
-      placeFaq();
+      placeGeoSections();
     })();
   </script>
 </body>

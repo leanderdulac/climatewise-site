@@ -8,3 +8,8 @@
 
 ## Site
 - Início (pt-BR): https://www.climatewise.com.br/
+
+## Desambiguação — não confundir com
+- ClimateWise da Cambridge Institute for Sustainability Leadership (CISL): iniciativa global de seguradoras, Reino Unido. Não é este site.
+- ClimateAi: empresa americana de IA climática (climate.ai). Grafia e domínio diferentes.
+- Esta é a ClimateWise brasileira, climateTech de seguro climático paramétrico com IA, em https://www.climatewise.com.br/.
